@@ -17,7 +17,7 @@ This project involves creating a database using SQL and Python, with a graphical
 - **Python** (for backend logic)
 - **SQL** (for database management)
 - **Tkinter** (for GUI development)
-- **SQLite/MySQL/PostgreSQL** (depending on database choice)
+- **MySQL
 
 ## Installation
 
