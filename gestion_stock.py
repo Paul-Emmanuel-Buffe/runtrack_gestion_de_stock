@@ -51,9 +51,33 @@ class Stock:
                       
 
 
-
+    def select_entry_feature(self, column_choice):
+        match column_choice:
+            case 1:
+                return "price"
+            case 2:
+                return "quantity"
+            case _:
+                  return None
     
-    #def modify_product(self):
+    def modify_product(self):
+        try: 
+            id = int(input("Enter the product ID you want modify: "))
+            column_choice = int(input("Select change:\n 1.Change Price\n 2.Change Quantity\nYour Choice: "))
+            new_value= int(input('Enter new value: '))
+            
+            column = self.select_entry_feature(column_choice)
+            if column is None:
+                print("Invalid selection")
+                return
+
+            query= f'UPDATE product SET {column} = %s WHERE id = %s'
+            self.cursor.execute(query,(new_value,id))
+            self.connection.commit()
+            print(f'Product {id} updated successfully')
+        except Exception as e:
+            self.connection.rollback()
+            print(f'An error occurred: {e}')
 
 config = {
     "user" : "root",
@@ -65,6 +89,8 @@ config = {
 
 store = Stock(config)
 
-store.delete_product()
+store.stock_product_display()
+
+store.modify_product()
 
 store.stock_product_display()
