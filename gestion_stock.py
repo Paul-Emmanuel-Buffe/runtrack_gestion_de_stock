@@ -64,12 +64,13 @@ class Stock:
         try: 
             id = int(input("Enter the product ID you want modify: "))
             column_choice = int(input("Select change:\n 1.Change Price\n 2.Change Quantity\nYour Choice: "))
-            new_value= int(input('Enter new value: '))
-            
+
             column = self.select_entry_feature(column_choice)
             if column is None:
                 print("Invalid selection")
                 return
+            
+            new_value= int(input('Enter new value: '))
 
             query= f'UPDATE product SET {column} = %s WHERE id = %s'
             self.cursor.execute(query,(new_value,id))
