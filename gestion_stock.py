@@ -90,8 +90,4 @@ config = {
 
 store = Stock(config)
 
-store.stock_product_display()
-
-store.modify_product()
-
-store.stock_product_display()
+store.delete_product()
